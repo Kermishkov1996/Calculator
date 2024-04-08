@@ -35,5 +35,27 @@ function handlerSymbol(symbol){
 					buffer = buffer.toString(0, buffer.length - 1);
 				}
 				break;
+			case '+':
+			case '-':
+			case '×':
+			case '÷':
+				handleMath(symbol);
+				break;
 	}
+}
+
+function handleMath(symbol){
+	if(buffer === '0'){
+		return;
+	}
+
+	const intBuffer = parseInt(buffer);
+
+	if(runningTotal === 0){
+		runningTotal = intBuffer;
+	} else{
+		flushOperation(intBuffer);
+	}
+	previousOperator = symbol;
+	buffer = '0';
 }
