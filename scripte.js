@@ -19,6 +19,15 @@ function handlerSymbol(symbol){
 			buffer = '0'
 			runningTotal = 0
 			break;
-		
+			case '=':
+				if(previousOperator === null){
+					return
+				}
+				flushOperation(parseInt(buffer));
+				previousOperator = null;
+				buffer = runningTotal;
+				runningTotal = 0;
+				break;
+
 	}
 }
